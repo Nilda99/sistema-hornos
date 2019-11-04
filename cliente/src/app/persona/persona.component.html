@@ -1,0 +1,28 @@
+<!-- <p>persona works!</p>
+
+<div class="col-lg-4">
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="nombre">Nombre </label>
+            <input name="nombre" type="text" class="form-control" [(ngModel)]="persona.nombre" placeholder="Ingrese nombre">
+        </div>
+        <br><br><br>
+        <div class="form-group">
+            <label for="correo">Apellido</label>
+            <input name="correo" type="email" class="form-control" [(ngModel)]="persona.apellido" placeholder="ingrese apellido">
+        </div>
+        <br><br><br>
+    </form>
+</div> -->
+<form>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nombre</label>
+        <input name="nombre" type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="personaDato.nombre" placeholder="Ingrese nombre">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Apellido</label>
+        <input name="apellido" type="text" class="form-control" id="exampleInputPassword1" [(ngModel)]="personaDato.apellido" placeholder="Ingrese apellido">
+    </div>
+
+    <!-- <button (click)="guardarPersona()">guardar temporalmente</button> -->
+</form>
