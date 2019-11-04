@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { PersonaComponent } from './persona/persona.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
-import { ArtistaComponent } from './artista/artista.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -18,7 +17,6 @@ import { ContentComponent } from './content/content.component';
     UsuarioComponent,
     PersonaComponent,
     EmpleadoComponent,
-    ArtistaComponent,
     NavbarComponent,
     SidebarComponent,
     ContentComponent
