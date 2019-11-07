@@ -1,10 +1,9 @@
 {
     "development": {
-        "username": "root",
-        "password": null,
-        "database": "database_development",
+        "username": "sa",
+        "password": "1234567",
+        "database": "Sistema-hornos",
         "host": "127.0.0.1",
-               // "dialect": "mysql",
         "dialect": "mssql",
         "operatorsAliases": false
     },
