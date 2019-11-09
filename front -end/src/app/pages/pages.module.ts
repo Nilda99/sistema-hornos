@@ -16,6 +16,8 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { CompraComponent } from './compra/compra.component';
 import { VentaComponent } from './venta/venta.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import {MDBBootstrapModule} from "angular-bootstrap-md";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { UsuarioComponent } from './usuario/usuario.component';
   ], imports: [
     SharedModule,
     PAGES_ROUTES, // sus propias rutas
-    FormsModule
+    FormsModule,
+    MDBBootstrapModule.forRoot(),
+    CommonModule,
   ]
 })
 export class PagesModule {

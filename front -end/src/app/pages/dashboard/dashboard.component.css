@@ -1,0 +1,15 @@
+.img1 {
+  /*background-color: #1cc88a;*/
+  /*display: flex;*/
+  background-image: url("../../../assets/img/IMG_7692-1170x460.jpg");
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  margin: 1px auto;
+  padding: 1px auto;
+  background-size: 100% 100%;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
