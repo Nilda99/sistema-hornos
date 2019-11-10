@@ -10,9 +10,11 @@ function get(request, response) {
 function guardar(request, response) {
     console.log(request.body);
     models.Empresa.create({
-        nombre: request.body.nombre,
-        descripcion: request.body.descripcion,
-        imagen: request.body.imagen,
+        Nombre: request.body.Nombre,
+        Telefono: request.body.Telefono,
+        Direccion: request.body.Direccion,
+        Logo: request.body.Logo
+
     }).then(function(data) {
         if (data) {
             response.status(200).send({ message: 'se registro' });
