@@ -1,2 +1,110 @@
-<p>producto works!</p>
-<h1>hola mundo producto</h1>
+<div class="container-fluid pt-5">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card border-info ">
+        <div class="card-header">
+          <p class="text-info text-center h1">Crear Producto</p>
+        </div>
+        <div class="card-body text-info">
+          <form action="
+                " method="post">
+            <div class="form-row">
+              <div class="form-group col-lg-6">
+                <label for="exampleFormControlSelect1">Empresa</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>Empresa 1</option>
+                  <option>Empresa 2</option>
+                  <option>Empresa 3</option>
+                  <option>Empresa 4</option>
+                  <option>Empresa 5</option>
+                </select>
+              </div>
+                <div class="form-group col-lg-6">
+                  <label for="exampleFormControlSelect1">Categoria</label>
+                  <select class="form-control" id="exampleFormControlSelect2">
+                    <option>Categoria1</option>
+                    <option>Categoria2</option>
+                    <option>Categoria3</option>
+                    <option>Categoria4</option>
+                    <option>Categoria5</option>
+                  </select>
+                </div>
+              </div>
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label for="inputfoto">Ingresar Foto</label>
+                    <input type="text" class="form-control" id="inputfoto" name="foto"
+                           placeholder="foto">
+                  </div>
+                  <div class="form-group col/">
+                    <label for="inputdescripcion">Ingresar una descripcion</label>
+                    <input type="text" class="form-control" id="inputdescripcion" name="descripcion"
+                           placeholder="Descripcion">
+                  </div>
+                  </div>
+                <div class="form-row">
+                  <div class="form-group col-lg-4">
+                    <label for="inputprecio">Ingresar precio</label>
+                    <input type="text" class="form-control" id="inputprecio" name="precio"
+                           placeholder="Precio">
+                  </div>
+                  <div class="form-group col-lg-4">
+                    <label for="inputcompra">Ingresar minimo compra</label>
+                    <input type="text" class="form-control" id="inputcompra" name="compra"
+                           placeholder="Compra">
+                  </div>
+                  <div class="form-group col-lg-4">
+                    <label for="inputcantidad">Ingresar la cantidad</label>
+                    <input type="text" class="form-control" id="inputcantidad" name="cantidad"
+                           placeholder="Cantidad">
+                  </div>
+                </div>
+
+
+              <button type="button" class="btn btn-success btn-lg btn-block">Agregar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-7">
+      <div class="card border-info ">
+        <div class="card-header">
+          <p class="text-info text-center h1">Listar Producto</p>
+        </div>
+        <div class="card-body text-info">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>idCategoria</th>
+              <th>idEmpresa</th>
+              <th>foto</th>
+              <th>descripcion</th>
+              <th>precio</th>
+              <th>minimoCompra</th>
+              <th>cantidad</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+

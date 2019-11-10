@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 // componentes
 import { RegisterComponent } from './login/register.component';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 
 
@@ -22,7 +23,7 @@ import { RegisterComponent } from './login/register.component';
   ],
   imports: [
     BrowserModule,
-
+    MDBBootstrapModule.forRoot(),
     APP_ROUTES,
     PagesModule,
   ],
