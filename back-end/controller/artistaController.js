@@ -1,15 +1,15 @@
-// var empresa = require('../models/empresa');
+// var Artista = require('../models/artista');
 var models = require('../models');
 
 function get(request, response) {
-    models.Empresa.findAll().then(empresa => {
-        response.json(empresa);
+    models.Artista.findAll().then(artista => {
+        response.json(artista);
     })
 }
 
 function guardar(request, response) {
     console.log(request.body);
-    models.Empresa.create({
+    models.Artista.create({
         nombre: request.body.nombre,
         descripcion: request.body.descripcion,
         imagen: request.body.imagen,
@@ -24,8 +24,8 @@ function guardar(request, response) {
 
 function actualizar(req, res) {
     const nuevoDato = req.body;
-    models.Empresa.update(nuevoDato, { where: { id: req.params.id } })
-        .then(empresa => {
+    models.Artista.update(nuevoDato, { where: { id: req.params.id } })
+        .then(artista => {
             return res.status(404).json({ message: "actualizado" });
         })
         .catch(function(err) {
@@ -34,8 +34,8 @@ function actualizar(req, res) {
 }
 
 function eliminar(req, res) {
-    models.Empresa.destroy({ where: { id: req.params.id } })
-        .then(empresa => {
+    models.Artista.destroy({ where: { id: req.params.id } })
+        .then(artista => {
             return res.status(404).json({ message: "Eliminado" });
         })
         .catch(function(err) {

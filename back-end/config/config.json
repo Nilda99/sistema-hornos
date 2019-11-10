@@ -2,7 +2,7 @@
     "development": {
         "username": "sa",
         "password": "1234567",
-        "database": "Sistema-hornos",
+        "database": "api",
         "host": "127.0.0.1",
         "dialect": "mssql",
         "operatorsAliases": false
