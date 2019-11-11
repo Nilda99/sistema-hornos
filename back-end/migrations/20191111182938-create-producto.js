@@ -1,26 +1,32 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Albums', {
+    return queryInterface.createTable('Productos', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      titulo: {
+      IdCategoria: {
+        type: Sequelize.INTEGER
+      },
+      Foto: {
         type: Sequelize.STRING
       },
-      descripcion: {
+      Descripcion: {
         type: Sequelize.STRING
       },
-      gestion: {
-        type: Sequelize.DATE
+      Precio: {
+        type: Sequelize.INTEGER
       },
-      imagen: {
-        type: Sequelize.STRING
+      MinimoCompra: {
+        type: Sequelize.INTEGER
       },
-      artistaId: {
+      Cantidad: {
+        type: Sequelize.INTEGER
+      },
+      IdEmpresa: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -34,6 +40,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Albums');
+    return queryInterface.dropTable('Productos');
   }
 };
