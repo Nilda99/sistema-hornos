@@ -1,5 +1,7 @@
 import {Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {MdbTableDirective, MdbTablePaginationComponent} from 'angular-bootstrap-md';
+import {EmpresaService} from '../../services/empresa.service';
+import {Empresa} from '../../models/empresa.model';
 
 
 // import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
@@ -15,14 +17,14 @@ export class EmpresaComponent implements OnInit, AfterViewInit {
 
   elements: any = [];
   headElements = ['id', 'first', 'last', 'handle'];
-
+  empresas: Empresa[];
 
   searchText = '';
   previous: string;
 
   maxVisibleItems = 8;
 
-  constructor(private cdRef: ChangeDetectorRef) {
+  constructor(private cdRef: ChangeDetectorRef, private empresaService: EmpresaService) {
   }
 
   @HostListener('input') oninput() {
@@ -37,6 +39,19 @@ export class EmpresaComponent implements OnInit, AfterViewInit {
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();
+    this.listEmpresa();
+  }
+
+  listEmpresa() {
+    this.empresaService.getAll().subscribe(
+      data => {
+        console.log(data);
+        this.empresas = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   ngAfterViewInit() {
@@ -111,7 +126,6 @@ export class EmpresaComponent implements OnInit, AfterViewInit {
       this.mdbTablePagination.calculateLastItemIndex();
     });
   }
-
 
 
 }
