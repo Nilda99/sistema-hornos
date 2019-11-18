@@ -1,7 +1,8 @@
-import {Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef} from '@angular/core';
-import {MdbTableDirective, MdbTablePaginationComponent} from 'angular-bootstrap-md';
+import {Component, OnInit} from '@angular/core';
 import {EmpresaService} from '../../services/empresa.service';
-import {Empresa} from '../../models/empresa.model';
+import {Empresa} from "../../models/empresa.model";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import Swal from 'sweetalert2';
 
 
 // import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
@@ -10,35 +11,54 @@ import {Empresa} from '../../models/empresa.model';
   templateUrl: './empresa.component.html',
   styleUrls: ['./empresa.component.sass']
 })
-export class EmpresaComponent implements OnInit, AfterViewInit {
-  @ViewChild(MdbTableDirective, {static: true}) mdbTable: MdbTableDirective;
-  @ViewChild(MdbTablePaginationComponent, {static: true}) mdbTablePagination: MdbTablePaginationComponent;
-  @ViewChild('row', {static: true}) row: ElementRef;
-
-  elements: any = [];
-  headElements = ['id', 'first', 'last', 'handle'];
+export class EmpresaComponent implements OnInit {
   empresas: Empresa[];
+  // signupForm:FormGroup
+  empresasForm: FormGroup;
 
-  searchText = '';
-  previous: string;
 
-  maxVisibleItems = 8;
-
-  constructor(private cdRef: ChangeDetectorRef, private empresaService: EmpresaService) {
+  constructor(private empresaService: EmpresaService, private formBuilder: FormBuilder) {
+    this.empresasForm = this.formBuilder.group({
+      Nombre: ['', [Validators.required]],
+      Telefono: ['', [Validators.required]],
+      Direccion: ['', [Validators.required]],
+      // Logo: [] ,
+    });
   }
 
-  @HostListener('input') oninput() {
-    this.mdbTablePagination.searchText = this.searchText;
+  enviar(values) {
+    console.log(values);
+    const newEmpresa = new Empresa();
+    newEmpresa.Nombre = values.Nombre;
+    newEmpresa.Telefono = values.Telefono;
+    newEmpresa.Direccion = values.Direccion;
+    // newEmpresa.Logo = values.Logo;
+    this.empresaService.create(newEmpresa).subscribe(
+      data => {
+        console.log(data);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: data.message,
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.empresasForm.reset();
+
+        this.listEmpresa();
+      },
+      error => {
+        console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!', // aqui
+        });
+      }
+    );
   }
 
   ngOnInit() {
-    for (let i = 1; i <= 25; i++) {
-      this.elements.push({id: i.toString(), first: 'Wpis ' + i, last: 'Last ' + i, handle: 'Handle ' + i});
-    }
-
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
     this.listEmpresa();
   }
 
@@ -48,84 +68,34 @@ export class EmpresaComponent implements OnInit, AfterViewInit {
         console.log(data);
         this.empresas = data;
       },
-      error => {
-        console.log(error);
+      error1 => {
+        console.log(error1);
       }
     );
   }
 
-  ngAfterViewInit() {
-    this.mdbTablePagination.setMaxVisibleItemsNumberTo(this.maxVisibleItems);
 
-    this.mdbTablePagination.calculateFirstItemIndex();
-    this.mdbTablePagination.calculateLastItemIndex();
-    this.cdRef.detectChanges();
+  editEmpresa(id: string) {
+    console.log(id);
+    // this.empresaService. // crear un servicio
   }
 
-  addNewRow() {
-    this.mdbTable.addRow({
-      id: this.elements.length.toString(),
-      first: 'Wpis ' + this.elements.length,
-      last: 'Last ' + this.elements.length,
-      handle: 'Handle ' + this.elements.length
-    });
-    this.emitDataSourceChange();
+  eliminarEmpresa(id: string) {
+    console.log(id);
+    this.empresaService.delete(id).subscribe(
+      data => {
+        console.log(data);
+        this.listEmpresa();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: data.message,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      },
+      error => {
+        console.log(error);
+      });
   }
-
-  addNewRowAfter() {
-    this.mdbTable.addRowAfter(1, {id: '2', first: 'Nowy', last: 'Row', handle: 'Kopytkowy'});
-    this.mdbTable.getDataSource().forEach((el: any, index: any) => {
-      el.id = (index + 1).toString();
-    });
-    this.emitDataSourceChange();
-  }
-
-  removeLastRow() {
-    this.mdbTable.removeLastRow();
-    this.emitDataSourceChange();
-    this.mdbTable.rowRemoved().subscribe((data: any) => {
-      console.log(data);
-    });
-  }
-
-  removeRow() {
-    this.mdbTable.removeRow(1);
-    this.mdbTable.getDataSource().forEach((el: any, index: any) => {
-      el.id = (index + 1).toString();
-    });
-    this.emitDataSourceChange();
-    this.mdbTable.rowRemoved().subscribe((data: any) => {
-      console.log(data);
-    });
-  }
-
-  emitDataSourceChange() {
-    this.mdbTable.dataSourceChange().subscribe((data: any) => {
-      console.log(data);
-    });
-  }
-
-  searchItems() {
-    const prev = this.mdbTable.getDataSource();
-
-    if (!this.searchText) {
-      this.mdbTable.setDataSource(this.previous);
-      this.elements = this.mdbTable.getDataSource();
-    }
-
-    if (this.searchText) {
-      this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
-      this.mdbTable.setDataSource(prev);
-    }
-
-    this.mdbTablePagination.calculateFirstItemIndex();
-    this.mdbTablePagination.calculateLastItemIndex();
-
-    this.mdbTable.searchDataObservable(this.searchText).subscribe(() => {
-      this.mdbTablePagination.calculateFirstItemIndex();
-      this.mdbTablePagination.calculateLastItemIndex();
-    });
-  }
-
-
 }

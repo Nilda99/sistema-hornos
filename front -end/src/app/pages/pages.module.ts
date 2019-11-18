@@ -9,15 +9,16 @@ import {PAGES_ROUTES} from './pages.routes';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ProgressComponent} from './progress/progress.component';
 import {Graficas1Component} from './graficas1/graficas1.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EmpresaComponent } from './empresa/empresa.component';
 import { ProductoComponent } from './producto/producto.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CompraComponent } from './compra/compra.component';
 import { VentaComponent } from './venta/venta.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import {MDBBootstrapModule} from "angular-bootstrap-md";
-import {CommonModule} from "@angular/common";
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,8 @@ import {CommonModule} from "@angular/common";
     FormsModule,
     MDBBootstrapModule.forRoot(),
     CommonModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule {

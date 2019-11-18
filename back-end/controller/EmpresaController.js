@@ -36,9 +36,10 @@ function actualizar(req, res) {
 }
 
 function eliminar(req, res) {
+     console.log(req);
     models.Empresa.destroy({ where: { id: req.params.id } })
         .then(empresa => {
-            return res.status(404).json({ message: "Eliminado" });
+            return res.status(200).json({ message: "Eliminado" });
         })
         .catch(function(err) {
             return res.status(404).json({ message: "No ha sido eliminado" });

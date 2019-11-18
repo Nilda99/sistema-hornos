@@ -1,15 +1,17 @@
 import {Injectable} from '@angular/core';
 import {Empresa} from '../models/empresa.model';
+
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpresaService {
-  private baseUrl: string;
+  baseUrl: string;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(protected httpClient: HttpClient) {
 
     this.baseUrl = 'http://localhost:3030/empresa'; // esto es la url osea  donde basa apungar para hacer get
   }
@@ -22,7 +24,7 @@ export class EmpresaService {
     return this.httpClient.post(this.baseUrl + '/guardar', empresa);
   }
 
-  delete(id: number): Observable<Empresa> { // elimina
+  delete(id: string): Observable<Empresa> { // elimina
     return this.httpClient.delete<Empresa>(this.baseUrl + '/eliminar/' + id);
   }
 
@@ -32,5 +34,8 @@ export class EmpresaService {
     // return this.httpClient.post<Artista>(this.baseUrl + '/actualizar/' + idArtista , artista);
   }
 
+  // para obtener empresa falta los id
+//   getId(id: string)  Observable < Empresa> {
+// return this.httpClient.
+//   }
 }
-
