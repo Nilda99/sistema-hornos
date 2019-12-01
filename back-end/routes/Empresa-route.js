@@ -4,5 +4,7 @@ var EmpresaController = require('../controller/EmpresaController');
 /* GET users listing. */
 router.get('/get', EmpresaController.get);
 router.post('/guardar', EmpresaController.guardar);
+router.put('/actualizar', EmpresaController.actualizar);
 router.delete('/eliminar/:id', EmpresaController.eliminar);
+
 module.exports = router;

@@ -31,12 +31,12 @@ function actualizar(req, res) {
             return res.status(404).json({ message: "actualizado" });
         })
         .catch(function(err) {
-            return res.status(404).json({ message: "Server con problemas" });
+            return res.status(404).json({ message: "no ha sido actualizado" });
         });
 }
 
 function eliminar(req, res) {
-     console.log(req);
+    console.log(req);
     models.Empresa.destroy({ where: { id: req.params.id } })
         .then(empresa => {
             return res.status(200).json({ message: "Eliminado" });
