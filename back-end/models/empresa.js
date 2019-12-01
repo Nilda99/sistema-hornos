@@ -8,6 +8,12 @@ module.exports = (sequelize, DataTypes) => {
     }, {});
     Empresa.associate = function(models) {
         // associations can be defined here
+        Empresa.hasMany(models.Producto, {
+            foreingkey: 'IdEmpresa',
+            as: 'Producto'
+        })
+
+
     };
     return Empresa;
 };
