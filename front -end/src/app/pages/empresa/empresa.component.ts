@@ -73,8 +73,6 @@ export class EmpresaComponent implements OnInit {
       }
     );
   }
-
-
   editEmpresa(id: string) {
     console.log(id);
     // this.empresaService. // crear un servicio
@@ -89,7 +87,7 @@ export class EmpresaComponent implements OnInit {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: data.message,
+          // title: data.message,
           showConfirmButton: false,
           timer: 1500
         });
